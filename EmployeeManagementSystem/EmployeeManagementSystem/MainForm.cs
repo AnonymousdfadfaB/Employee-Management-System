@@ -40,13 +40,10 @@ namespace EmployeeManagementSystem
             dashboard1.Visible = true;
             addEmployee1.Visible = false;
             salary1.Visible = false;
+            addBonus1.Visible = false;
+            dashboard1.RefreshData();
 
-            Dashboard dashForm = dashboard1 as Dashboard;
-
-            if(dashForm != null)
-            {
-                dashForm.RefreshData();
-            }
+    
 
         }
 
@@ -55,13 +52,8 @@ namespace EmployeeManagementSystem
             dashboard1.Visible = false;
             addEmployee1.Visible = true;
             salary1.Visible = false;
-
-            AddEmployee addEmForm = addEmployee1 as AddEmployee;
-
-            if(addEmForm != null)
-            {
-                addEmForm.RefreshData();
-            }
+            addBonus1.Visible = false;
+            addEmployee1.RefreshData();
 
         }
 
@@ -69,15 +61,25 @@ namespace EmployeeManagementSystem
         {
             dashboard1.Visible = false;
             addEmployee1.Visible = false;
+            addBonus1.Visible = false;
             salary1.Visible = true;
 
             Salary salaryForm = salary1 as Salary;
+        }
 
-            if(salaryForm != null)
-            {
-                salaryForm.RefreshData();
-            }
+        private void dashboard1_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void bonus_btn_Click(object sender, EventArgs e)
+        {
+            dashboard1.Visible = false;
+            addEmployee1.Visible = false;
+            addBonus1.Visible =true;
+            salary1.Visible = false;
+            //addBonus1.RefreshData();
+           
         }
     }
 }

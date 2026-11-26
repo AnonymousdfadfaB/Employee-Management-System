@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addBonus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="addBonus.Designer.cs">
+      <DependentUpon>addBonus.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddEmployee.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +92,9 @@
       <DependentUpon>Salary.cs</DependentUpon>
     </Compile>
     <Compile Include="SalaryData.cs" />
+    <EmbeddedResource Include="addBonus.resx">
+      <DependentUpon>addBonus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddEmployee.resx">
       <DependentUpon>AddEmployee.cs</DependentUpon>
     </EmbeddedResource>

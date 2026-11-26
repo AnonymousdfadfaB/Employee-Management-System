@@ -15,7 +15,7 @@ namespace EmployeeManagementSystem
     public partial class Form1 : Form
     {
         SqlConnection connect
-            = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\WINDOWS 10\Documents\employee.mdf;Integrated Security=True;Connect Timeout=30");
+            = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PayrollManagementSystem;Integrated Security=True;Encrypt=False;TrustServerCertificate=True");
         public Form1()
         {
             InitializeComponent();
@@ -64,33 +64,34 @@ namespace EmployeeManagementSystem
                     {
                         connect.Open();
 
-                        string selectData = "SELECT * FROM users WHERE username = @username " +
-                            "AND password = @password";
-
-                        using(SqlCommand cmd = new SqlCommand(selectData, connect))
+                        string selectData = "SELECT * FROM Accounts WHERE Username = @username " +
+                            "AND Password = @password";
+                        using (SqlCommand cmd = new SqlCommand(selectData, connect))
                         {
                             cmd.Parameters.AddWithValue("@username", login_username.Text.Trim());
                             cmd.Parameters.AddWithValue("@password", login_password.Text.Trim());
 
-                            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                            DataTable table = new DataTable();
-                            adapter.Fill(table);
-
-                            if(table.Rows.Count >= 1)
+                            using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                MessageBox.Show("Login successfully!"
-                                    , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (reader.Read()) // Nếu đọc được 1 dòng -> Đăng nhập thành công!
+                                {
+                                    int accountId = Convert.ToInt32(reader["AccountId"]); // Lấy luôn AccountId để dùng sau
+                                    string role = reader["Role"].ToString();
 
-                                MainForm mForm = new MainForm();
-                                mForm.Show();
-                                this.Hide();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Incorrect Username/Password"
-                                    , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("Login successfully!" , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    MainForm mForm = new MainForm();
+                                    mForm.Show();
+                                    this.Hide();
+                                    // Mở Form chính ở đây...
+                                }
+                                else // Không có dòng nào khớp -> Sai username hoặc password
+                                {
+                                    MessageBox.Show("Incorrect Username/Password", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
+
                     }
                     catch (Exception ex)
                     {

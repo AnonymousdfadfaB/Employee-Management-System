@@ -11,18 +11,19 @@ namespace EmployeeManagementSystem
     class EmployeeData
     {
 
-        public int ID { set; get; } // 0
-        public string EmployeeID { set; get; } // 1
-        public string Name { set; get; } // 2
-        public string Gender { set; get; } // 3
-        public string Contact { set; get; } // 4
-        public string Position { set; get; } // 5
-        public string Image { set; get; } // 6
-        public int Salary { set; get; } // 7
-        public string Status { set; get; } // 8
+        public string EmployeeCode { set; get; }
+        public string Name { set; get; }
+        public string Gender { set; get; }
+        public string Phone { set; get; }
+        public string Position { set; get; }
+        public string Status { set; get; }
+        public decimal Salary { set; get; } // Đổi sang decimal để khớp với DECIMAL(18,2)
+        public byte[] Avatar { set; get; }
 
 
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\WINDOWS 10\Documents\employee.mdf;Integrated Security=True;Connect Timeout=30");
+
+
+        SqlConnection connect = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PayrollManagementSystem;Integrated Security=True;Encrypt=False;TrustServerCertificate=True");
     
 
         public List<EmployeeData> employeeListData()
@@ -35,7 +36,7 @@ namespace EmployeeManagementSystem
                 {
                     connect.Open();
 
-                    string selectData = "SELECT * FROM employees WHERE delete_date IS NULL";
+                    string selectData = "SELECT * FROM Employees";
 
                     using(SqlCommand cmd = new SqlCommand(selectData, connect))
                     {
@@ -44,20 +45,29 @@ namespace EmployeeManagementSystem
                         while (reader.Read())
                         {
                             EmployeeData ed = new EmployeeData();
-                            ed.ID = (int)reader["id"];
-                            ed.EmployeeID = reader["employee_id"].ToString();
-                            ed.Name = reader["full_name"].ToString();
-                            ed.Gender = reader["gender"].ToString();
-                            ed.Contact = reader["contact_number"].ToString();
-                            ed.Position = reader["position"].ToString();
-                            ed.Image = reader["image"].ToString();
-                            ed.Salary = (int)reader["salary"];
-                            ed.Status = reader["status"].ToString();
+                            ed.EmployeeCode = reader["EmployeeCode"].ToString();
+                            ed.Name = reader["FullName"].ToString();
+                            ed.Gender = reader["Gender"].ToString();
+                            ed.Phone = reader["PhoneNumber"].ToString();
+                            ed.Position = reader["Position"].ToString();
+                            ed.Status = reader["Status"].ToString();
+
+                            // Đọc cột Salary kiểu decimal an toàn
+                            ed.Salary = reader["Salary"] != DBNull.Value ? Convert.ToDecimal(reader["Salary"]) : 0;
+
+                            // Đọc cột Avatar kiểu VARBINARY(MAX)
+                            if (reader["Avatar"] != DBNull.Value)
+                            {
+                                ed.Avatar = (byte[])reader["Avatar"];
+                            }
+                            else
+                            {
+                                ed.Avatar = null;
+                            }
 
                             listdata.Add(ed);
                         }
                     }
-                        
                 }catch(Exception ex)
                 {
                     Console.WriteLine("Error: " + ex);
@@ -89,7 +99,7 @@ namespace EmployeeManagementSystem
                         while (reader.Read())
                         {
                             EmployeeData ed = new EmployeeData();
-                            ed.EmployeeID = reader["employee_id"].ToString();
+                            ed.EmployeeCode = reader["EmployeeCode"].ToString();
                             ed.Name = reader["full_name"].ToString();
                             ed.Position = reader["position"].ToString();
                             ed.Salary = (int)reader["salary"];

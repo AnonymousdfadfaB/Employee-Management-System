@@ -14,14 +14,14 @@ namespace EmployeeManagementSystem
 {
     public partial class Dashboard : UserControl
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\WINDOWS 10\Documents\employee.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connect = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PayrollManagementSystem;Integrated Security=True;Encrypt=False;TrustServerCertificate=True");
         public Dashboard()
         {
             InitializeComponent();
 
-            displayTE();
-            displayAE();
-            displayIE();
+            //displayTE();
+            //displayAE();
+            //displayIE();
         }
 
         public void RefreshData()
@@ -32,9 +32,9 @@ namespace EmployeeManagementSystem
                 return;
             }
 
-            displayTE();
-            displayAE();
-            displayIE();
+            //displayTE();
+            //displayAE();
+            //displayIE();
         }
 
         public void displayTE()

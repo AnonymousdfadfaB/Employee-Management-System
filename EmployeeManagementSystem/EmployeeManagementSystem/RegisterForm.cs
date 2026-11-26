@@ -15,7 +15,7 @@ namespace EmployeeManagementSystem
     public partial class RegisterForm : Form
     {
         SqlConnection connect 
-            = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\WINDOWS 10\Documents\employee.mdf;Integrated Security=True;Connect Timeout=30");
+            = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PayrollManagementSystem;Integrated Security=True;Encrypt=False;TrustServerCertificate=True");
         public RegisterForm()
         {
             InitializeComponent();
@@ -54,32 +54,28 @@ namespace EmployeeManagementSystem
                     {
                         connect.Open();
                         // TO CHECK IF THE USER IS EXISTING ALREADY
-                        string selectUsername = "SELECT COUNT(id) FROM users WHERE username = @user";
+                        string selectUsername = "SELECT COUNT(AccountId) FROM Accounts WHERE Username = @user";
 
                         using(SqlCommand checkUser = new SqlCommand(selectUsername, connect))
                         {
                             checkUser.Parameters.AddWithValue("@user", signup_username.Text.Trim());
-                            int count = (int)checkUser.ExecuteScalar();
+                            int count = (int)checkUser.ExecuteScalar(); //??
 
-                            if(count >= 1)
+                            if(count == 1)
                             {
                                 MessageBox.Show(signup_username.Text.Trim() + " is already taken"
                                     , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
                             {
-                                DateTime today = DateTime.Today;
-
-                                string insertData = "INSERT INTO users " +
-                                    "(username, password, date_register) " +
-                                    "VALUES(@username, @password, @dateReg)";
+                                string insertData = "INSERT INTO Accounts " +
+                                    "(Username, Password) " +
+                                    "VALUES(@username, @password)";
 
                                 using (SqlCommand cmd = new SqlCommand(insertData, connect))
                                 {
                                     cmd.Parameters.AddWithValue("@username", signup_username.Text.Trim());
                                     cmd.Parameters.AddWithValue("@password", signup_password.Text.Trim());
-                                    cmd.Parameters.AddWithValue("@dateReg", today);
-
                                     cmd.ExecuteNonQuery();
 
                                     MessageBox.Show("Registered successfully!"
@@ -91,9 +87,6 @@ namespace EmployeeManagementSystem
                                 }
                             }
                         }
-
-                        
-
                     }catch(Exception ex)
                     {
                         MessageBox.Show("Error: " + ex

@@ -15,7 +15,7 @@ namespace EmployeeManagementSystem
 {
     public partial class AddEmployee : UserControl
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\WINDOWS 10\Documents\employee.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection connect = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PayrollManagementSystem;Integrated Security=True;Encrypt=False;TrustServerCertificate=True");
 
         public AddEmployee()
         {
@@ -39,13 +39,31 @@ namespace EmployeeManagementSystem
         {
             EmployeeData ed = new EmployeeData();
             List<EmployeeData> listData = ed.employeeListData();
+            dataGridView1.RowTemplate.Height = 90;
+            // 2. Cấu hình cột chứa ảnh (thay "Avatar" bằng đúng tên property trong class của bạn)
+            if (dataGridView1.Columns["Avatar"] is DataGridViewImageColumn imgCol)
+            {
+                // Zoom giúp giữ nguyên tỷ lệ 400x600, không bao giờ làm méo ảnh
+                imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
 
+                // Chiều rộng cột 60px khớp tỷ lệ 2:3 với Row Height 90px
+                imgCol.Width = 60;
+
+                // Tạo khoảng thở (padding) xung quanh ảnh cho thoáng mắt
+                imgCol.DefaultCellStyle.Padding = new Padding(4);
+
+                // Màu nền khi ô trống hoặc phần viền dư của tỷ lệ Zoom
+                imgCol.DefaultCellStyle.NullValue = null;
+            }
+
+            // 3. Căn giữa chữ cho các cột thông tin còn lại để cân đối với ảnh cao
+            dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView1.DataSource = listData;
         }
 
         private void addEmployee_addBtn_Click(object sender, EventArgs e)
         {
-            if(addEmployee_id.Text == ""
+            if(addEmployee_code.Text == ""
                 || addEmployee_fullName.Text == ""
                 || addEmployee_gender.Text == ""
                 || addEmployee_phoneNum.Text == ""
@@ -63,51 +81,61 @@ namespace EmployeeManagementSystem
                     try
                     {
                         connect.Open();
-                        string checkEmID = "SELECT COUNT(*) FROM employees WHERE employee_id = @emID AND delete_date IS NULL";
+                        string checkEmCode = "SELECT COUNT(*) FROM Employees WHERE EmployeeCode = @emCode";
 
-                        using(SqlCommand checkEm = new SqlCommand(checkEmID, connect))
+                        using(SqlCommand checkEm = new SqlCommand(checkEmCode, connect))
                         {
-                            checkEm.Parameters.AddWithValue("@emID", addEmployee_id.Text.Trim());
+                            checkEm.Parameters.AddWithValue("@emCode", addEmployee_code.Text.Trim());
                             int count = (int)checkEm.ExecuteScalar();
 
                             if(count >= 1)
                             {
-                                MessageBox.Show(addEmployee_id.Text.Trim() + " is already taken"
+                                MessageBox.Show(addEmployee_code.Text.Trim() + " is already taken"
                                     , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
                             {
-                                DateTime today = DateTime.Today;
+                                //DateTime today = DateTime.Today;
                                 string insertData = "INSERT INTO employees " +
-                                    "(employee_id, full_name, gender, contact_number" +
-                                    ", position, image, salary, insert_date, status) " +
-                                    "VALUES(@employeeID, @fullName, @gender, @contactNum" +
-                                    ", @position, @image, @salary, @insertDate, @status)";
+                                    "(EmployeeCode, Fullname, Gender, PhoneNumber" +
+                                    ", Position, Salary, Avatar) " +
+                                    "VALUES(@employeeCode, @fullName, @gender, @contactNum" +
+                                    ", @position, @salary, @image )";
 
-                                string path = Path.Combine(@"C:\Users\WINDOWS 10\source\repos\EmployeeManagementSystem\EmployeeManagementSystem\Directory\" 
-                                    + addEmployee_id.Text.Trim() + ".jpg");
-
-                                string directoryPath = Path.GetDirectoryName(path);
-
-                                if (!Directory.Exists(directoryPath))
+                                byte[] imageBytes = null;
+                                if (!string.IsNullOrEmpty(addEmployee_picture.ImageLocation))
                                 {
-                                    Directory.CreateDirectory(directoryPath);
+                                    imageBytes = File.ReadAllBytes(addEmployee_picture.ImageLocation);
                                 }
 
-                                File.Copy(addEmployee_picture.ImageLocation, path, true);
-
-                                using(SqlCommand cmd = new SqlCommand(insertData, connect))
+                                using (SqlCommand cmd = new SqlCommand(insertData, connect))
                                 {
-                                    cmd.Parameters.AddWithValue("@employeeID", addEmployee_id.Text.Trim());
+                                    cmd.Parameters.AddWithValue("@employeeCode", addEmployee_code.Text.Trim());
                                     cmd.Parameters.AddWithValue("@fullName", addEmployee_fullName.Text.Trim());
                                     cmd.Parameters.AddWithValue("@gender", addEmployee_gender.Text.Trim());
                                     cmd.Parameters.AddWithValue("@contactNum", addEmployee_phoneNum.Text.Trim());
                                     cmd.Parameters.AddWithValue("@position", addEmployee_position.Text.Trim());
-                                    cmd.Parameters.AddWithValue("@image", path);
-                                    cmd.Parameters.AddWithValue("@salary", 0);
-                                    cmd.Parameters.AddWithValue("@insertDate", today);
-                                    cmd.Parameters.AddWithValue("@status", addEmployee_status.Text.Trim());
 
+                                    decimal salaryValue = 0;
+
+                                    // 2. Nếu người dùng có nhập chữ vào TextBox thì kiểm tra và ép kiểu sang decimal
+                                    if (!string.IsNullOrWhiteSpace(addEmployee_salary.Text))
+                                    {
+                                        // decimal.TryParse giúp kiểm tra người dùng có nhập đúng định dạng số hay không (tránh crash app)
+                                        if (!decimal.TryParse(addEmployee_salary.Text.Trim(), out salaryValue))
+                                        {
+                                            MessageBox.Show("Mức lương không hợp lệ! Vui lòng chỉ nhập số.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            return; // Dừng lại, không chạy lệnh SQL nữa
+                                        }
+                                    }
+
+                                    // 3. Truyền biến kiểu decimal (salaryValue) vào tham số SQL
+                                    cmd.Parameters.AddWithValue("@salary", salaryValue);
+
+                                    // 2. Truyền mảng byte[] vào tham số @image dưới dạng VarBinary
+                                    SqlParameter imageParam = new SqlParameter("@image", SqlDbType.VarBinary, -1);
+                                    imageParam.Value = (object)imageBytes ?? DBNull.Value;
+                                    cmd.Parameters.Add(imageParam);
                                     cmd.ExecuteNonQuery();
 
                                     displayEmployeeData();
@@ -158,7 +186,7 @@ namespace EmployeeManagementSystem
             if(e.RowIndex != -1)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                addEmployee_id.Text = row.Cells[1].Value.ToString();
+                addEmployee_code.Text = row.Cells[1].Value.ToString();
                 addEmployee_fullName.Text = row.Cells[2].Value.ToString();
                 addEmployee_gender.Text = row.Cells[3].Value.ToString();
                 addEmployee_phoneNum.Text = row.Cells[4].Value.ToString();
@@ -181,7 +209,7 @@ namespace EmployeeManagementSystem
 
         public void clearFields()
         {
-            addEmployee_id.Text = "";
+            addEmployee_code.Text = "";
             addEmployee_fullName.Text = "";
             addEmployee_gender.SelectedIndex = -1;
             addEmployee_phoneNum.Text = "";
@@ -192,7 +220,7 @@ namespace EmployeeManagementSystem
 
         private void addEmployee_updateBtn_Click(object sender, EventArgs e)
         {
-            if (addEmployee_id.Text == ""
+            if (addEmployee_code.Text == ""
                 || addEmployee_fullName.Text == ""
                 || addEmployee_gender.Text == ""
                 || addEmployee_phoneNum.Text == ""
@@ -206,7 +234,7 @@ namespace EmployeeManagementSystem
             else
             {
                 DialogResult check = MessageBox.Show("Are you sure you want to UPDATE " +
-                    "Employee ID: " + addEmployee_id.Text.Trim() + "?", "Confirmation Message"
+                    "Employee ID: " + addEmployee_code.Text.Trim() + "?", "Confirmation Message"
                     , MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (check == DialogResult.Yes)
@@ -229,7 +257,7 @@ namespace EmployeeManagementSystem
                             cmd.Parameters.AddWithValue("@position", addEmployee_position.Text.Trim());
                             cmd.Parameters.AddWithValue("@updateDate", today);
                             cmd.Parameters.AddWithValue("@status", addEmployee_status.Text.Trim());
-                            cmd.Parameters.AddWithValue("@employeeID", addEmployee_id.Text.Trim());
+                            cmd.Parameters.AddWithValue("@employeeID", addEmployee_code.Text.Trim());
 
                             cmd.ExecuteNonQuery();
 
@@ -267,7 +295,7 @@ namespace EmployeeManagementSystem
 
         private void addEmployee_deleteBtn_Click(object sender, EventArgs e)
         {
-            if (addEmployee_id.Text == ""
+            if (addEmployee_code.Text == ""
                 || addEmployee_fullName.Text == ""
                 || addEmployee_gender.Text == ""
                 || addEmployee_phoneNum.Text == ""
@@ -281,7 +309,7 @@ namespace EmployeeManagementSystem
             else
             {
                 DialogResult check = MessageBox.Show("Are you sure you want to DELETE " +
-                    "Employee ID: " + addEmployee_id.Text.Trim() + "?", "Confirmation Message"
+                    "Employee ID: " + addEmployee_code.Text.Trim() + "?", "Confirmation Message"
                     , MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (check == DialogResult.Yes)
@@ -297,7 +325,7 @@ namespace EmployeeManagementSystem
                         using (SqlCommand cmd = new SqlCommand(updateData, connect))
                         {
                             cmd.Parameters.AddWithValue("@deleteDate", today);
-                            cmd.Parameters.AddWithValue("@employeeID", addEmployee_id.Text.Trim());
+                            cmd.Parameters.AddWithValue("@employeeID", addEmployee_code.Text.Trim());
 
                             cmd.ExecuteNonQuery();
 
@@ -326,6 +354,25 @@ namespace EmployeeManagementSystem
                 }
 
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addEmployee_id_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addEmployee_picture_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Để trống vì bạn đã xử lý ở sự kiện dataGridView1_CellClick
         }
     }
 }
