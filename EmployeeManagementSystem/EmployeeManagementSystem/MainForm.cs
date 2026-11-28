@@ -42,6 +42,7 @@ namespace EmployeeManagementSystem
             salary1.Visible = false;
             addBonus1.Visible = false;
             log1.Visible = false;
+            rawLog1.Visible = false;
             dashboard1.RefreshData();
 
     
@@ -55,6 +56,7 @@ namespace EmployeeManagementSystem
             salary1.Visible = false;
             addBonus1.Visible = false;
             log1.Visible = false;
+            rawLog1.Visible = false;
             addEmployee1.RefreshData();
 
         }
@@ -66,6 +68,7 @@ namespace EmployeeManagementSystem
             addBonus1.Visible = false;
             salary1.Visible = true;
             log1.Visible = false;
+            rawLog1.Visible = false;
             Salary salaryForm = salary1 as Salary;
         }
 
@@ -81,6 +84,8 @@ namespace EmployeeManagementSystem
             addBonus1.Visible =true;
             salary1.Visible = false;
             log1.Visible = false;
+            rawLog1.Visible = false;
+            addBonus1.refreshData();
             //addBonus1.RefreshData();
 
         }
@@ -92,6 +97,24 @@ namespace EmployeeManagementSystem
             addBonus1.Visible = false;
             salary1.Visible = false;
             log1.Visible = true;
+            rawLog1.Visible = false;
+            log1.refreshData();
+        }
+
+        private void rawLog1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rawLog_btn_Click(object sender, EventArgs e)
+        {
+            dashboard1.Visible = false;
+            addEmployee1.Visible = false;
+            addBonus1.Visible = false;
+            salary1.Visible = false;
+            log1.Visible = false;
+            rawLog1.Visible = true;
+            rawLog1.refreshData();
         }
     }
 }

@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.log_synchronizeBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -40,6 +41,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.log_synchronizeBtn);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(33, 37);
@@ -68,7 +70,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.Size = new System.Drawing.Size(1197, 664);
+            this.dataGridView1.Size = new System.Drawing.Size(1197, 600);
             this.dataGridView1.TabIndex = 3;
             // 
             // label1
@@ -81,6 +83,26 @@
             this.label1.Size = new System.Drawing.Size(146, 35);
             this.label1.TabIndex = 2;
             this.label1.Text = "Daily Logs";
+            // 
+            // log_synchronizeBtn
+            // 
+            this.log_synchronizeBtn.BackColor = System.Drawing.Color.Fuchsia;
+            this.log_synchronizeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.log_synchronizeBtn.FlatAppearance.BorderSize = 0;
+            this.log_synchronizeBtn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(8)))), ((int)(((byte)(138)))));
+            this.log_synchronizeBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(8)))), ((int)(((byte)(138)))));
+            this.log_synchronizeBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(8)))), ((int)(((byte)(138)))));
+            this.log_synchronizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.log_synchronizeBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.log_synchronizeBtn.ForeColor = System.Drawing.Color.White;
+            this.log_synchronizeBtn.Location = new System.Drawing.Point(1038, 714);
+            this.log_synchronizeBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.log_synchronizeBtn.Name = "log_synchronizeBtn";
+            this.log_synchronizeBtn.Size = new System.Drawing.Size(170, 57);
+            this.log_synchronizeBtn.TabIndex = 19;
+            this.log_synchronizeBtn.Text = "Synchronize";
+            this.log_synchronizeBtn.UseVisualStyleBackColor = false;
+            this.log_synchronizeBtn.Click += new System.EventHandler(this.log_synchronizeBtn_Click);
             // 
             // Log
             // 
@@ -102,6 +124,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button log_synchronizeBtn;
     }
 }
 

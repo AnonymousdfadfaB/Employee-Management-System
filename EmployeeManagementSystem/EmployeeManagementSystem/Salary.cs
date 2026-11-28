@@ -52,6 +52,8 @@ namespace EmployeeManagementSystem
 
             // 2. Lấy tổng số ngày của tháng đó (VD: tháng 2 năm 2026 = 28 ngày, tháng 11 = 30 ngày)
             int daysInMonth = DateTime.DaysInMonth(year, month);
+            DateTime fromDate = new DateTime(year, month, 1);
+            DateTime toDate = new DateTime(year, month, daysInMonth);
 
             // Tạo bảng tạm (DataTable) để chứa kết quả sau khi duyệt từng nhân viên
             DataTable dtSalaryResult = new DataTable();
@@ -70,7 +72,14 @@ namespace EmployeeManagementSystem
                 {
                     connect.Open();
                 }
-
+                // BƯỚC MỚI: Đồng bộ dữ liệu từ AttendanceLogs sang DailyAttendances cho cả tháng trước khi tính lương
+                using (SqlCommand cmdSync = new SqlCommand("sp_SyncDailyAttendances", connect))
+                {
+                    cmdSync.CommandType = CommandType.StoredProcedure;
+                    cmdSync.Parameters.AddWithValue("@FromDate", fromDate);
+                    cmdSync.Parameters.AddWithValue("@ToDate", toDate);
+                    cmdSync.ExecuteNonQuery();
+                }
                 // 3. Lấy danh sách toàn bộ nhân viên (hoặc chỉ nhân viên đang Active)
                 DataTable dtEmployees = new DataTable();
                 string empQuery = "SELECT EmployeeID, EmployeeCode, FullName, Position, Salary FROM Employees";

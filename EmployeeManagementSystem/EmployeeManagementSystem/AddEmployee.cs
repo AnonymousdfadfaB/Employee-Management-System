@@ -233,6 +233,7 @@ namespace EmployeeManagementSystem
             addEmployee_position.SelectedIndex = -1;
             addEmployee_status.SelectedIndex = -1;
             addEmployee_picture.Image = null;
+            addEmployee_salary.Text = "";
         }
 
         private void addEmployee_updateBtn_Click(object sender, EventArgs e)

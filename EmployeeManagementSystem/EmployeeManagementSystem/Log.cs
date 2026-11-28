@@ -80,6 +80,46 @@ namespace EmployeeManagementSystem
             }
         }
 
+        public void refreshData()
+        {
+            displayData();
+        }
+
+        private void log_synchronizeBtn_Click(object sender, EventArgs e)
+        {
+            if (connect.State == ConnectionState.Closed)
+            {
+                try
+                {
+                    connect.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("sp_SyncDailyAttendances", connect))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Nếu không truyền tham số @FromDate và @ToDate, thủ tục sẽ tự động đồng bộ ngày hôm nay.
+                        // Nếu bạn có 2 ô DateTimePicker trên Form (ví dụ dtpFromDate và dtpToDate), bỏ comment 2 dòng dưới:
+                        // cmd.Parameters.AddWithValue("@FromDate", dtpFromDate.Value.Date);
+                        // cmd.Parameters.AddWithValue("@ToDate", dtpToDate.Value.Date);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Successfully synchronize", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    connect.Close();
+                }
+
+                // Gọi lại hàm hiển thị nếu cần làm mới bảng dữ liệu ngay sau khi đóng kết nối
+                refreshData();
+            }
+        }
     }
 }
 
