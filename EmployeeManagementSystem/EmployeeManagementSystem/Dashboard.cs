@@ -18,10 +18,7 @@ namespace EmployeeManagementSystem
         public Dashboard()
         {
             InitializeComponent();
-
-            //displayTE();
-            //displayAE();
-            //displayIE();
+            displayData();
         }
 
         public void RefreshData()
@@ -31,112 +28,37 @@ namespace EmployeeManagementSystem
                 Invoke((MethodInvoker)RefreshData);
                 return;
             }
-
-            //displayTE();
-            //displayAE();
-            //displayIE();
+            displayData();
         }
-
-        public void displayTE()
-        {
-            if(connect.State != ConnectionState.Open)
-            {
-                try
-                {
-                    connect.Open();
-
-                    string selectData = "SELECT COUNT(id) FROM employees WHERE delete_date IS NULL";
-
-                    using(SqlCommand cmd = new SqlCommand(selectData, connect))
-                    {
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        if (reader.Read())
-                        {
-                            int count = Convert.ToInt32(reader[0]);
-                            dashboard_TE.Text = count.ToString();
-                        }
-                        reader.Close();
-                    }
-
-                }catch(Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex, "Error Message"
-                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    connect.Close();
-                }
-            }
-        }
-
-        public void displayAE()
+        public void displayData()
         {
             if (connect.State != ConnectionState.Open)
             {
                 try
                 {
                     connect.Open();
-
-                    string selectData = "SELECT COUNT(id) FROM employees WHERE status = @status " +
-                        "AND delete_date IS NULL";
-
+                    string selectData = @"
+                SELECT 
+                    COUNT(EmployeeID) AS TotalEmployees,
+                    COUNT(CASE WHEN Status = 'Active' THEN 1 END) AS ActiveEmployees,
+                    COUNT(CASE WHEN Status = 'Inactive' THEN 1 END) AS InactiveEmployees
+                FROM Employees";
                     using (SqlCommand cmd = new SqlCommand(selectData, connect))
                     {
-                        cmd.Parameters.AddWithValue("@status", "Active");
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        if (reader.Read())
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            int count = Convert.ToInt32(reader[0]);
-                            dashboard_AE.Text = count.ToString();
+                            if (reader.Read())
+                            {
+                                dashboard_TE.Text = reader["TotalEmployees"].ToString();
+                                dashboard_AE.Text = reader["ActiveEmployees"].ToString();
+                                dashboard_IE.Text = reader["InactiveEmployees"].ToString();
+                            }
                         }
-                        reader.Close();
                     }
-
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex, "Error Message"
-                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    connect.Close();
-                }
-            }
-        }
-
-        public void displayIE()
-        {
-            if (connect.State != ConnectionState.Open)
-            {
-                try
-                {
-                    connect.Open();
-
-                    string selectData = "SELECT COUNT(id) FROM employees WHERE status = @status " +
-                        "AND delete_date IS NULL";
-
-                    using (SqlCommand cmd = new SqlCommand(selectData, connect))
-                    {
-                        cmd.Parameters.AddWithValue("@status", "Ianctive");
-                        SqlDataReader reader = cmd.ExecuteReader();
-
-                        if (reader.Read())
-                        {
-                            int count = Convert.ToInt32(reader[0]);
-                            dashboard_IE.Text = count.ToString();
-                        }
-                        reader.Close();
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex, "Error Message"
-                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error: " + ex.Message, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {

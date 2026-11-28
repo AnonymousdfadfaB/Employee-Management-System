@@ -3,24 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|c:\\users\\picvu\\employee-management-system-in-csharp\\employeemanagementsystem\\employeemanagementsystem\\addemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\addemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|c:\\users\\picvu\\employee-management-system-in-csharp\\employeemanagementsystem\\employeemanagementsystem\\log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\employeemanagementsystem\\employeedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\employeedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|c:\\users\\picvu\\employee-management-system-in-csharp\\employeemanagementsystem\\employeemanagementsystem\\log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\log.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\employeemanagementsystem\\addbonus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\addbonus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\employeemanagementsystem\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|c:\\users\\picvu\\employee-management-system-in-csharp\\employeemanagementsystem\\employeemanagementsystem\\log.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\log.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|c:\\users\\picvu\\employee-management-system-in-csharp\\employeemanagementsystem\\employeemanagementsystem\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|c:\\users\\picvu\\employee-management-system-in-csharp\\employeemanagementsystem\\employeemanagementsystem\\addemployee.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\addemployee.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\employeemanagementsystem\\addemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\addemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\employeemanagementsystem\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\employeemanagementsystem\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\employeemanagementsystem\\addbonus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6C7DAF6B-9712-48EE-B405-C746F1E3043D}|EmployeeManagementSystem\\EmployeeManagementSystem.csproj|solutionrelative:employeemanagementsystem\\addbonus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,62 +66,116 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddEmployee.cs",
-              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\AddEmployee.cs",
-              "RelativeDocumentMoniker": "EmployeeManagementSystem\\AddEmployee.cs",
-              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\AddEmployee.cs",
-              "RelativeToolTip": "EmployeeManagementSystem\\AddEmployee.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAowDIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "MainForm.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\MainForm.Designer.cs",
+              "RelativeDocumentMoniker": "EmployeeManagementSystem\\MainForm.Designer.cs",
+              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\MainForm.Designer.cs",
+              "RelativeToolTip": "EmployeeManagementSystem\\MainForm.Designer.cs",
+              "ViewState": "AgIAAGEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-25T13:33:09.093Z",
+              "WhenOpened": "2026-11-28T04:18:15.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddEmployee.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\AddEmployee.Designer.cs",
+              "RelativeDocumentMoniker": "EmployeeManagementSystem\\AddEmployee.Designer.cs",
+              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\AddEmployee.Designer.cs",
+              "RelativeToolTip": "EmployeeManagementSystem\\AddEmployee.Designer.cs",
+              "ViewState": "AgIAANABAAAAAAAAAAAAAN8BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-28T04:07:33.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Log.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\Log.Designer.cs",
+              "RelativeDocumentMoniker": "EmployeeManagementSystem\\Log.Designer.cs",
+              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\Log.Designer.cs",
+              "RelativeToolTip": "EmployeeManagementSystem\\Log.Designer.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-28T04:07:18.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Log.cs",
+              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\Log.cs",
+              "RelativeDocumentMoniker": "EmployeeManagementSystem\\Log.cs",
+              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\Log.cs",
+              "RelativeToolTip": "EmployeeManagementSystem\\Log.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADEAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-28T04:06:12.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Log.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\Log.cs",
+              "RelativeDocumentMoniker": "EmployeeManagementSystem\\Log.cs",
+              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\Log.cs [Design]",
+              "RelativeToolTip": "EmployeeManagementSystem\\Log.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-28T04:05:26.033Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "addBonus.cs",
+              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\addBonus.cs",
+              "RelativeDocumentMoniker": "EmployeeManagementSystem\\addBonus.cs",
+              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\addBonus.cs",
+              "RelativeToolTip": "EmployeeManagementSystem\\addBonus.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-28T01:27:57.088Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MainForm.cs",
-              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\MainForm.cs",
-              "RelativeDocumentMoniker": "EmployeeManagementSystem\\MainForm.cs",
-              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\MainForm.cs",
-              "RelativeToolTip": "EmployeeManagementSystem\\MainForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T22:00:03.231Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddEmployee.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\AddEmployee.cs",
-              "RelativeDocumentMoniker": "EmployeeManagementSystem\\AddEmployee.cs",
-              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\AddEmployee.cs [Design]",
-              "RelativeToolTip": "EmployeeManagementSystem\\AddEmployee.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T22:01:11.945Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmployeeData.cs",
-              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\EmployeeData.cs",
-              "RelativeDocumentMoniker": "EmployeeManagementSystem\\EmployeeData.cs",
-              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\EmployeeData.cs",
-              "RelativeToolTip": "EmployeeManagementSystem\\EmployeeData.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-23T12:54:39.678Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "MainForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\MainForm.cs",
               "RelativeDocumentMoniker": "EmployeeManagementSystem\\MainForm.cs",
               "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\MainForm.cs [Design]",
               "RelativeToolTip": "EmployeeManagementSystem\\MainForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-20T21:59:06.859Z"
+              "WhenOpened": "2026-11-20T21:59:06.859Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AddEmployee.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\AddEmployee.cs",
+              "RelativeDocumentMoniker": "EmployeeManagementSystem\\AddEmployee.cs",
+              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\AddEmployee.cs [Design]",
+              "RelativeToolTip": "EmployeeManagementSystem\\AddEmployee.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-20T22:01:11.945Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "addBonus.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\addBonus.cs",
+              "RelativeDocumentMoniker": "EmployeeManagementSystem\\addBonus.cs",
+              "ToolTip": "C:\\Users\\picvu\\Employee-Management-System-in-CSharp\\EmployeeManagementSystem\\EmployeeManagementSystem\\addBonus.cs [Design]",
+              "RelativeToolTip": "EmployeeManagementSystem\\addBonus.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-28T01:26:25.188Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

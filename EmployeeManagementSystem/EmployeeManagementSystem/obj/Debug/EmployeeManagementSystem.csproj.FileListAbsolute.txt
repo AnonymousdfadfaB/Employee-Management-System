@@ -21,6 +21,7 @@ C:\Users\picvu\Employee-Management-System-in-CSharp\EmployeeManagementSystem\Emp
 C:\Users\picvu\Employee-Management-System-in-CSharp\EmployeeManagementSystem\EmployeeManagementSystem\obj\Debug\EmployeeManagementSystem.AddEmployee.resources
 C:\Users\picvu\Employee-Management-System-in-CSharp\EmployeeManagementSystem\EmployeeManagementSystem\obj\Debug\EmployeeManagementSystem.Dashboard.resources
 C:\Users\picvu\Employee-Management-System-in-CSharp\EmployeeManagementSystem\EmployeeManagementSystem\obj\Debug\EmployeeManagementSystem.Form1.resources
+C:\Users\picvu\Employee-Management-System-in-CSharp\EmployeeManagementSystem\EmployeeManagementSystem\obj\Debug\EmployeeManagementSystem.Log.resources
 C:\Users\picvu\Employee-Management-System-in-CSharp\EmployeeManagementSystem\EmployeeManagementSystem\obj\Debug\EmployeeManagementSystem.MainForm.resources
 C:\Users\picvu\Employee-Management-System-in-CSharp\EmployeeManagementSystem\EmployeeManagementSystem\obj\Debug\EmployeeManagementSystem.Properties.Resources.resources
 C:\Users\picvu\Employee-Management-System-in-CSharp\EmployeeManagementSystem\EmployeeManagementSystem\obj\Debug\EmployeeManagementSystem.RegisterForm.resources

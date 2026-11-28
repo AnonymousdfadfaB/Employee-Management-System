@@ -37,6 +37,7 @@ namespace EmployeeManagementSystem
             this.label4 = new System.Windows.Forms.Label();
             this.greet_user = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.log_btn = new System.Windows.Forms.Button();
             this.bonus_btn = new System.Windows.Forms.Button();
             this.logout_btn = new System.Windows.Forms.Button();
             this.salary_btn = new System.Windows.Forms.Button();
@@ -47,6 +48,7 @@ namespace EmployeeManagementSystem
             this.addEmployee1 = new EmployeeManagementSystem.AddEmployee();
             this.salary1 = new EmployeeManagementSystem.Salary();
             this.addBonus1 = new EmployeeManagementSystem.addBonus();
+            this.log1 = new EmployeeManagementSystem.Log();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -95,6 +97,7 @@ namespace EmployeeManagementSystem
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
+            this.panel2.Controls.Add(this.log_btn);
             this.panel2.Controls.Add(this.bonus_btn);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.logout_btn);
@@ -140,12 +143,34 @@ namespace EmployeeManagementSystem
             this.panel3.Controls.Add(this.addEmployee1);
             this.panel3.Controls.Add(this.salary1);
             this.panel3.Controls.Add(this.addBonus1);
+            this.panel3.Controls.Add(this.log1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(338, 53);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1312, 870);
             this.panel3.TabIndex = 2;
+            // 
+            // log_btn
+            // 
+            this.log_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
+            this.log_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.log_btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(8)))), ((int)(((byte)(138)))));
+            this.log_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(8)))), ((int)(((byte)(138)))));
+            this.log_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(8)))), ((int)(((byte)(138)))));
+            this.log_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.log_btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.log_btn.ForeColor = System.Drawing.Color.White;
+            this.log_btn.Image = ((System.Drawing.Image)(resources.GetObject("log_btn.Image")));
+            this.log_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.log_btn.Location = new System.Drawing.Point(16, 691);
+            this.log_btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.log_btn.Name = "log_btn";
+            this.log_btn.Size = new System.Drawing.Size(300, 62);
+            this.log_btn.TabIndex = 8;
+            this.log_btn.Text = "LOG";
+            this.log_btn.UseVisualStyleBackColor = false;
+            this.log_btn.Click += new System.EventHandler(this.log_btn_Click);
             // 
             // bonus_btn
             // 
@@ -292,6 +317,14 @@ namespace EmployeeManagementSystem
             this.addBonus1.Size = new System.Drawing.Size(1312, 869);
             this.addBonus1.TabIndex = 3;
             // 
+            // log1
+            // 
+            this.log1.Location = new System.Drawing.Point(0, -4);
+            this.log1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.log1.Name = "log1";
+            this.log1.Size = new System.Drawing.Size(1312, 869);
+            this.log1.TabIndex = 4;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -334,5 +367,7 @@ namespace EmployeeManagementSystem
         private AddEmployee addEmployee1;
         private System.Windows.Forms.Button bonus_btn;
         private addBonus addBonus1;
+        private System.Windows.Forms.Button log_btn;
+        private Log log1;
     }
 }

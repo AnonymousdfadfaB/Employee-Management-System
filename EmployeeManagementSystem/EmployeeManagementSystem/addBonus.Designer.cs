@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,6 +51,8 @@
             this.addBonus_EmployeeCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.addBonus_BonusCode = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -73,14 +75,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(33, 91);
@@ -91,6 +93,7 @@
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.Size = new System.Drawing.Size(1197, 297);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label1
             // 
@@ -116,6 +119,8 @@
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.addBonus_BonusCode);
+            this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.addBonus_Reason);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.addBonus_Month);
@@ -142,7 +147,7 @@
             // addBonus_Reason
             // 
             this.addBonus_Reason.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBonus_Reason.Location = new System.Drawing.Point(966, 92);
+            this.addBonus_Reason.Location = new System.Drawing.Point(927, 21);
             this.addBonus_Reason.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addBonus_Reason.Multiline = true;
             this.addBonus_Reason.Name = "addBonus_Reason";
@@ -153,7 +158,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(861, 95);
+            this.label6.Location = new System.Drawing.Point(822, 24);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 22);
@@ -163,7 +168,7 @@
             // addBonus_Month
             // 
             this.addBonus_Month.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBonus_Month.Location = new System.Drawing.Point(533, 95);
+            this.addBonus_Month.Location = new System.Drawing.Point(561, 89);
             this.addBonus_Month.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addBonus_Month.Name = "addBonus_Month";
             this.addBonus_Month.Size = new System.Drawing.Size(199, 28);
@@ -173,7 +178,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(453, 95);
+            this.label5.Location = new System.Drawing.Point(481, 89);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 22);
@@ -183,7 +188,7 @@
             // addBonus_Year
             // 
             this.addBonus_Year.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBonus_Year.Location = new System.Drawing.Point(173, 95);
+            this.addBonus_Year.Location = new System.Drawing.Point(561, 18);
             this.addBonus_Year.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addBonus_Year.Name = "addBonus_Year";
             this.addBonus_Year.Size = new System.Drawing.Size(199, 28);
@@ -193,7 +198,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(96, 95);
+            this.label4.Location = new System.Drawing.Point(484, 18);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 22);
@@ -203,7 +208,7 @@
             // addBonus_Amount
             // 
             this.addBonus_Amount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBonus_Amount.Location = new System.Drawing.Point(966, 46);
+            this.addBonus_Amount.Location = new System.Drawing.Point(576, 153);
             this.addBonus_Amount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addBonus_Amount.Name = "addBonus_Amount";
             this.addBonus_Amount.Size = new System.Drawing.Size(199, 28);
@@ -213,7 +218,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(862, 52);
+            this.label8.Location = new System.Drawing.Point(472, 159);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(76, 22);
@@ -238,6 +243,7 @@
             this.addBonus_clearBtn.TabIndex = 17;
             this.addBonus_clearBtn.Text = "Clear";
             this.addBonus_clearBtn.UseVisualStyleBackColor = false;
+            this.addBonus_clearBtn.Click += new System.EventHandler(this.addBonus_clearBtn_Click);
             // 
             // addBonus_deleteBtn
             // 
@@ -257,6 +263,7 @@
             this.addBonus_deleteBtn.TabIndex = 16;
             this.addBonus_deleteBtn.Text = "Delete";
             this.addBonus_deleteBtn.UseVisualStyleBackColor = false;
+            this.addBonus_deleteBtn.Click += new System.EventHandler(this.addBonus_deleteBtn_Click);
             // 
             // addBonus_updateBtn
             // 
@@ -276,6 +283,7 @@
             this.addBonus_updateBtn.TabIndex = 15;
             this.addBonus_updateBtn.Text = "Update";
             this.addBonus_updateBtn.UseVisualStyleBackColor = false;
+            this.addBonus_updateBtn.Click += new System.EventHandler(this.addBonus_updateBtn_Click);
             // 
             // addBonus_addBtn
             // 
@@ -300,7 +308,7 @@
             // addBonus_EmployeeFullName
             // 
             this.addBonus_EmployeeFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBonus_EmployeeFullName.Location = new System.Drawing.Point(533, 46);
+            this.addBonus_EmployeeFullName.Location = new System.Drawing.Point(168, 159);
             this.addBonus_EmployeeFullName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addBonus_EmployeeFullName.Name = "addBonus_EmployeeFullName";
             this.addBonus_EmployeeFullName.Size = new System.Drawing.Size(253, 28);
@@ -310,7 +318,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(421, 46);
+            this.label3.Location = new System.Drawing.Point(56, 159);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 22);
@@ -320,7 +328,7 @@
             // addBonus_EmployeeCode
             // 
             this.addBonus_EmployeeCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBonus_EmployeeCode.Location = new System.Drawing.Point(173, 37);
+            this.addBonus_EmployeeCode.Location = new System.Drawing.Point(168, 95);
             this.addBonus_EmployeeCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addBonus_EmployeeCode.Name = "addBonus_EmployeeCode";
             this.addBonus_EmployeeCode.Size = new System.Drawing.Size(199, 28);
@@ -330,7 +338,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 37);
+            this.label2.Location = new System.Drawing.Point(13, 95);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(142, 22);
@@ -345,6 +353,26 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1258, 348);
             this.panel4.TabIndex = 1;
+            // 
+            // addBonus_BonusCode
+            // 
+            this.addBonus_BonusCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBonus_BonusCode.Location = new System.Drawing.Point(168, 24);
+            this.addBonus_BonusCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.addBonus_BonusCode.Name = "addBonus_BonusCode";
+            this.addBonus_BonusCode.Size = new System.Drawing.Size(199, 28);
+            this.addBonus_BonusCode.TabIndex = 29;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(30, 24);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 22);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Bonus Code:";
             // 
             // addBonus
             // 
@@ -388,5 +416,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox addBonus_Month;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox addBonus_BonusCode;
+        private System.Windows.Forms.Label label7;
     }
 }

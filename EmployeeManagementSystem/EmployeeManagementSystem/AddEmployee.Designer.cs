@@ -98,7 +98,6 @@ namespace EmployeeManagementSystem
             this.dataGridView1.Size = new System.Drawing.Size(1197, 297);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label1
             // 
@@ -177,7 +176,7 @@ namespace EmployeeManagementSystem
             this.addEmployee_status.FormattingEnabled = true;
             this.addEmployee_status.Items.AddRange(new object[] {
             "Active",
-            "Ianctive"});
+            "Inactive"});
             this.addEmployee_status.Location = new System.Drawing.Point(607, 134);
             this.addEmployee_status.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.addEmployee_status.Name = "addEmployee_status";

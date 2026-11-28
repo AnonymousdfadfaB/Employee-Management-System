@@ -183,29 +183,46 @@ namespace EmployeeManagementSystem
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex != -1)
+            // Kiểm tra e.RowIndex >= 0 để tránh click vào tiêu đề cột và bỏ qua dòng trống cuối cùng (NewRow)
+            if (e.RowIndex >= 0 && !dataGridView1.Rows[e.RowIndex].IsNewRow)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                addEmployee_code.Text = row.Cells[1].Value.ToString();
-                addEmployee_fullName.Text = row.Cells[2].Value.ToString();
-                addEmployee_gender.Text = row.Cells[3].Value.ToString();
-                addEmployee_phoneNum.Text = row.Cells[4].Value.ToString();
-                addEmployee_position.Text = row.Cells[5].Value.ToString();
 
-                string imagePath = row.Cells[6].Value.ToString();
+                // Sử dụng ?.ToString() ?? "" để không bị lỗi NullReferenceException nếu ô đó trống
+                addEmployee_code.Text = row.Cells["EmployeeCode"].Value?.ToString() ?? "";
+                addEmployee_fullName.Text = row.Cells["Name"].Value?.ToString() ?? "";
+                addEmployee_gender.Text = row.Cells["Gender"].Value?.ToString() ?? "";
+                addEmployee_phoneNum.Text = row.Cells["Phone"].Value?.ToString() ?? "";
+                addEmployee_position.Text = row.Cells["Position"].Value?.ToString() ?? "";
+                addEmployee_status.Text = row.Cells["Status"].Value?.ToString() ?? "";
+                addEmployee_salary.Text = row.Cells["Salary"].Value?.ToString() ?? "0";
 
-                if(imagePath != null)
+                // Reset đường dẫn ảnh cũ (để tránh hiểu nhầm là người dùng vừa chọn ảnh mới khi bấm Update)
+                addEmployee_picture.ImageLocation = null;
+
+                // Xử lý hiển thị hình ảnh từ cột Avatar (VARBINARY -> byte[] -> Image)
+                if (row.Cells["Avatar"].Value != null && row.Cells["Avatar"].Value != DBNull.Value)
                 {
-                    addEmployee_picture.Image = Image.FromFile(imagePath);
+                    byte[] imageBytes = (byte[])row.Cells["Avatar"].Value;
+                    if (imageBytes.Length > 0)
+                    {
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            addEmployee_picture.Image = Image.FromStream(ms);
+                        }
+                    }
+                    else
+                    {
+                        addEmployee_picture.Image = null;
+                    }
                 }
                 else
                 {
                     addEmployee_picture.Image = null;
                 }
-
-                addEmployee_status.Text = row.Cells[8].Value.ToString();
             }
         }
+
 
         public void clearFields()
         {
@@ -241,13 +258,38 @@ namespace EmployeeManagementSystem
                 {
                     try
                     {
-                        connect.Open();
-                        DateTime today = DateTime.Today;
+                        if (connect.State == ConnectionState.Closed)
+                            connect.Open();
 
-                        string updateData = "UPDATE employees SET full_name = @fullName" +
-                            ", gender = @gender, contact_number = @contactNum" +
-                            ", position = @position, update_date = @updateDate, status = @status " +
-                            "WHERE employee_id = @employeeID";
+                        // 1. Kiểm tra định dạng mức lương (Salary) trước khi chạy SQL
+                        decimal salaryValue = 0;
+                        if (!string.IsNullOrWhiteSpace(addEmployee_salary.Text))
+                        {
+                            if (!decimal.TryParse(addEmployee_salary.Text.Trim(), out salaryValue))
+                            {
+                                MessageBox.Show("Mức lương không hợp lệ! Vui lòng chỉ nhập số.",
+                                    "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+
+                        // 2. Xử lý hình ảnh (Avatar)
+                        byte[] imageBytes = null;
+                        bool hasNewImage = false;
+
+                        // Nếu người dùng có chọn ảnh mới từ máy tính (ImageLocation có đường dẫn)
+                        if (!string.IsNullOrEmpty(addEmployee_picture.ImageLocation) && File.Exists(addEmployee_picture.ImageLocation))
+                        {
+                            imageBytes = File.ReadAllBytes(addEmployee_picture.ImageLocation);
+                            hasNewImage = true;
+                        }
+
+                        // 3. Xây dựng câu lệnh SQL (Chỉ cập nhật cột Avatar nếu có chọn ảnh mới)
+                        string updateData = "UPDATE Employees SET FullName = @fullName, " +
+                                            "Gender = @gender, PhoneNumber = @contactNum, " +
+                                            "Position = @position, Status = @status, Salary = @salary " +
+                                            (hasNewImage ? ", Avatar = @image " : "") +
+                                            "WHERE EmployeeCode = @employeeCode";
 
                         using (SqlCommand cmd = new SqlCommand(updateData, connect))
                         {
@@ -255,29 +297,46 @@ namespace EmployeeManagementSystem
                             cmd.Parameters.AddWithValue("@gender", addEmployee_gender.Text.Trim());
                             cmd.Parameters.AddWithValue("@contactNum", addEmployee_phoneNum.Text.Trim());
                             cmd.Parameters.AddWithValue("@position", addEmployee_position.Text.Trim());
-                            cmd.Parameters.AddWithValue("@updateDate", today);
                             cmd.Parameters.AddWithValue("@status", addEmployee_status.Text.Trim());
-                            cmd.Parameters.AddWithValue("@employeeID", addEmployee_code.Text.Trim());
+                            cmd.Parameters.AddWithValue("@salary", salaryValue);
+                            cmd.Parameters.AddWithValue("@employeeCode", addEmployee_code.Text.Trim());
 
-                            cmd.ExecuteNonQuery();
+                            if (hasNewImage)
+                            {
+                                SqlParameter imageParam = new SqlParameter("@image", SqlDbType.VarBinary, -1);
+                                imageParam.Value = imageBytes;
+                                cmd.Parameters.Add(imageParam);
+                            }
 
-                            displayEmployeeData();
+                            int rowsAffected = cmd.ExecuteNonQuery();
 
-                            MessageBox.Show("Update successfully!"
-                                , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            
-                            clearFields();
+                            if (rowsAffected > 0)
+                            {
+                                displayEmployeeData();
+
+                                MessageBox.Show("Update successfully!",
+                                    "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                clearFields();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không tìm thấy mã nhân viên để cập nhật!",
+                                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex
-                        , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error: " + ex.Message,
+                            "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
                     {
-                        connect.Close();
+                        if (connect.State == ConnectionState.Open)
+                            connect.Close();
                     }
+
                 }
                 else
                 {
@@ -295,57 +354,60 @@ namespace EmployeeManagementSystem
 
         private void addEmployee_deleteBtn_Click(object sender, EventArgs e)
         {
-            if (addEmployee_code.Text == ""
-                || addEmployee_fullName.Text == ""
-                || addEmployee_gender.Text == ""
-                || addEmployee_phoneNum.Text == ""
-                || addEmployee_position.Text == ""
-                || addEmployee_status.Text == ""
-                || addEmployee_picture.Image == null)
+            if (addEmployee_code.Text == "")
             {
-                MessageBox.Show("Please fill all blank fields"
+                MessageBox.Show("Please fill employee code"
                     , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 DialogResult check = MessageBox.Show("Are you sure you want to DELETE " +
-                    "Employee ID: " + addEmployee_code.Text.Trim() + "?", "Confirmation Message"
+                    "Employee Code: " + addEmployee_code.Text.Trim() + "?", "Confirmation Message"
                     , MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (check == DialogResult.Yes)
                 {
                     try
                     {
-                        connect.Open();
-                        DateTime today = DateTime.Today;
+                        if (connect.State == ConnectionState.Closed)
+                            connect.Open();
 
-                        string updateData = "UPDATE employees SET delete_date = @deleteDate " +
-                            "WHERE employee_id = @employeeID";
+                        // Dùng lệnh DELETE theo EmployeeCode
+                        string deleteData = "DELETE FROM Employees WHERE EmployeeCode = @employeeCode";
 
-                        using (SqlCommand cmd = new SqlCommand(updateData, connect))
+                        using (SqlCommand cmd = new SqlCommand(deleteData, connect))
                         {
-                            cmd.Parameters.AddWithValue("@deleteDate", today);
-                            cmd.Parameters.AddWithValue("@employeeID", addEmployee_code.Text.Trim());
+                            cmd.Parameters.AddWithValue("@employeeCode", addEmployee_code.Text.Trim());
 
-                            cmd.ExecuteNonQuery();
+                            int rowsAffected = cmd.ExecuteNonQuery();
 
-                            displayEmployeeData();
+                            if (rowsAffected > 0)
+                            {
+                                displayEmployeeData();
 
-                            MessageBox.Show("Update successfully!"
-                                , "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Deleted successfully!",
+                                    "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            clearFields();
+                                clearFields();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Employee Code not found!",
+                                    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex
-                        , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error: " + ex.Message,
+                            "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
                     {
-                        connect.Close();
+                        if (connect.State == ConnectionState.Open)
+                            connect.Close();
                     }
+
                 }
                 else
                 {
